@@ -1,0 +1,254 @@
+<h1>Create</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  {{"}"}}
+
+  //Observable from Create Method
+  const obsUsingCreate = Observable.create( observer => {{"{"}}
+     observer.next( '1' )
+     observer.next( '2' )
+     observer.next( '3' )
+
+     observer.complete()
+  {{"}"}})
+
+    obsUsingCreate
+      .subscribe(val => console.log(val),
+              error=> console.log("error"),
+              () => console.log("complete"))
+}
+****Output *****
+1
+2
+3
+Complete
+</pre>
+<hr>
+<h1>Observable Constructor</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  //Observable Using Constructor
+  const obsUsingConstructor = new Observable( observer => {{"{"}}
+      observer.next( '1' )
+      observer.next( '2' )
+      observer.next( '3' )
+
+      observer.complete()
+  {{"}"}})
+
+   obsUsingConstructor
+        .subscribe(val => console.log(val),
+                error=> console.log("error"),
+                () => console.log("complete"))
+  {{"}"}}
+
+
+****Output *****
+1
+2
+3
+complete
+</pre>
+<hr>
+<h1>Of Operator</h1>
+<pre>
+ngOnInit() {{"{"}}
+  const array=[1,2,3,4,5,6,7]
+  const obsof1=of(array);
+  obsof1.subscribe(val => console.log(val),
+           error=> console.log("error"),
+          () => console.log("complete"))
+
+{{"}"}}
+
+
+**** Output ***
+[1, 2, 3, 4, 5, 6, 7]
+complete
+</pre>
+<hr>
+<pre>
+  ngOnInit() {{"{"}}
+  const array1=[1,2,3,4,5,6,7]
+  const array2=['a','b','c','d','e','f','g']
+  const obsof2=of(array1,array2 );
+  obsof2.subscribe(val => console.log(val),
+           error=> console.log("error"),
+          () => console.log("complete"))
+
+{{"}"}}
+
+
+**** Output ***
+[1, 2, 3, 4, 5, 6, 7]
+['a','b','c','d','e','f','g']
+complete
+</pre>
+<hr>
+<h1>observable from a sequence of numbers</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  const obsof3 = of(1, 2, 3);
+  obsof3.subscribe(val => console.log(val),
+    error => console.log("error"),
+    () => console.log("complete"))
+
+  {{"}"}}
+
+
+
+**** Output ***
+1
+2
+3
+complete
+</pre>
+<hr>
+<h1>observable from string</h1>
+<pre>
+   ngOnInit() {{"{"}}
+  const obsof4 = of('Hello', 'World');
+  obsof4.subscribe(val => console.log(val),
+    error => console.log("error"),
+    () => console.log("complete"))
+  {{"}"}}
+
+
+**** Output ***
+Hello
+World
+complete
+</pre>
+<hr>
+<h1>observable from a value, array & string</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  const obsof5 = of(100, [1, 2, 3, 4, 5, 6, 7],"Hello World");
+  obsof5.subscribe(val => console.log(val),
+    error => console.log("error"),
+    () => console.log("complete"))
+  {{"}"}}
+
+**** Output ***
+100
+[1, 2, 3, 4, 5, 6, 7]
+Hello World
+complete
+</pre>
+<hr>
+<h1>from Operator</h1>
+<h1>observable from an array</h1>
+<pre>
+ngOnInit() {{"{"}}
+
+  const array3 = [1, 2, 3, 4, 5, 6, 7]
+  const obsfrom1 = from(array3);
+  obsfrom1.subscribe(val => console.log(val),
+    error => console.log("error"),
+    () => console.log("complete"))
+
+  {{"}"}}
+
+*** Output ****
+1
+2
+3
+4
+5
+6
+7
+complete
+</pre>
+<hr>
+<h1>Observable from string</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  const obsfrom2 = from('Hello World');
+    obsfrom2.subscribe(val => console.log(val),
+      error => console.log("error"),
+      () => console.log("complete"))
+  {{"}"}}
+
+
+*** Output ****
+H
+e
+l
+l
+o
+
+W
+o
+r
+l
+d
+complete
+</pre>
+<hr>
+<h1>Observable from collection</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  let myMap = new Map()
+  myMap.set(0, 'Hello')
+  myMap.set(1, 'World')
+  const obsFrom3 = from(myMap);
+  obsFrom3.subscribe(val => console.log(val),
+    error => console.log("error"),
+    () => console.log("complete"))
+  {{"}"}}
+
+*** output ***
+[0, "Hello"]
+[1, "World"]
+complete
+</pre>
+<hr>
+<h1>Observable from iterable</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  const obsFrom4 = from(this.generateNos())
+   obsFrom4.subscribe(val => console.log(val),
+   error => console.log("error"),
+   () => console.log("complete"))
+{{"}"}}
+
+*generateNos() {{"{"}}
+  var i = 0;
+  while (i < 5) {{"{"}}
+     i = i + 1;
+     yield i;
+     {{"}"}}
+  {{"}"}}
+
+*** Output ***
+1
+2
+3
+4
+5
+</pre>
+<hr>
+<h1>Observable from promise</h1>
+<pre>
+  ngOnInit() {{"{"}}
+  const promiseSource = from(new Promise(resolve => resolve('Hello World!')));
+  const obsFrom5 = from(promiseSource);
+  obsFrom5.subscribe(val => console.log(val),
+    error => console.log("error"),
+    () => console.log("complete"))
+  {{"}"}}
+
+*** Output ****
+Hello World
+complete
+</pre>
+<hr>
+<h1>of VS from</h1>
+<pre>
+  OF
+  -Accepts variable no of arguments
+  -emits each argument as it is without changing anything
+  FROM
+  -Accepts only one argument
+  -iterates over the argument and emits each value
+</pre>
